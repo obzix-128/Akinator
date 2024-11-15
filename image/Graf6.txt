@@ -1,0 +1,31 @@
+digraph
+{
+rankdir = TB;
+{
+_007F4F78[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = Poko | { left = NULL | right = NULL }} "]
+_007F0E50[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = Bull | { left = NULL | right = NULL }} "]
+_007F0E68[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = El Primo | { left = NULL | right = NULL }} "]
+_007F0CF0[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = He has a gun? | { <_l_007F0E50> left = 007F0E50 | <_r_007F0E68> right = 007F0E68 }} "]
+_007F0CF0:<_l_007F0E50>->_007F0E50[label = "Yes"]
+_007F0CF0:<_r_007F0E68>->_007F0E68[label = "No"]
+_007F0DA0[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = Nita | { left = NULL | right = NULL }} "]
+_007F0F10[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = Spraut | { left = NULL | right = NULL }} "]
+_007F04C0[shape = record, style = "filled" fillcolor = "#b0ffb0", label = " { data = Edgar | { left = NULL | right = NULL }} "]
+_007F04D8[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = It is unknown what | { left = NULL | right = NULL }} "]
+_007F0F28[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = He is dead inside? | { <_l_007F04C0> left = 007F04C0 | <_r_007F04D8> right = 007F04D8 }} "]
+_007F0F28:<_l_007F04C0>->_007F04C0[label = "Yes"]
+_007F0F28:<_r_007F04D8>->_007F04D8[label = "No"]
+_007F0DB8[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = He is a plant? | { <_l_007F0F10> left = 007F0F10 | <_r_007F0F28> right = 007F0F28 }} "]
+_007F0DB8:<_l_007F0F10>->_007F0F10[label = "Yes"]
+_007F0DB8:<_r_007F0F28>->_007F0F28[label = "No"]
+_007F0D08[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = She has a big bear? | { <_l_007F0DA0> left = 007F0DA0 | <_r_007F0DB8> right = 007F0DB8 }} "]
+_007F0D08:<_l_007F0DA0>->_007F0DA0[label = "Yes"]
+_007F0D08:<_r_007F0DB8>->_007F0DB8[label = "No"]
+_007F4F90[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = He is very big? | { <_l_007F0CF0> left = 007F0CF0 | <_r_007F0D08> right = 007F0D08 }} "]
+_007F4F90:<_l_007F0CF0>->_007F0CF0[label = "Yes"]
+_007F4F90:<_r_007F0D08>->_007F0D08[label = "No"]
+_0064FEE8[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = He has a guitar? | { <_l_007F4F78> left = 007F4F78 | <_r_007F4F90> right = 007F4F90 }} "]
+_0064FEE8:<_l_007F4F78>->_007F4F78[label = "Yes"]
+_0064FEE8:<_r_007F4F90>->_007F4F90[label = "No"]
+}
+}

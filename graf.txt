@@ -1,0 +1,9 @@
+digraph
+{
+rankdir = TB;
+{
+_1[shape = record, style = "filled" fillcolor = "#bbffff", label = " {data = %d | { <jojo> left = %p | right = %p }} "]
+_2[shape = record, style = "filled" fillcolor = "#bbffff", label = " {data = %d | {  left = %p | right = %p }} "]
+}
+_1:<jojo>->_2
+}

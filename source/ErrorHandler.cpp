@@ -32,6 +32,11 @@ ErrorNumbers errorHandler(ErrorNumbers error, const char* func_name)
             fprintf(stderr, "ERROR: Incorrect number of arguments\n");
             break;
         }
+        case _UNIDENTIFINED_RESPONSE_ERROR:
+        {
+            fprintf(stderr, "ERROR: The entered response was not recognized\n");
+            break;
+        }
         default:
         {
             fprintf(stderr, "Unknown error\n");

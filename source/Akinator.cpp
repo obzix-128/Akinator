@@ -1,7 +1,8 @@
 #include "../include/Akinator.h"
 #include "../include/ErrorHandler.h"
 #include "../include/WorkWithLogFile.h"
-#include "../include/AddElements.h"
+#include "../include/CtorAndDtor.h"
+#include "../include/Run.h"
 
 
 int main(const int argc, const char** argv)
@@ -18,29 +19,18 @@ int main(const int argc, const char** argv)
     FILE* log_file = NULL;
     CHECK_ERROR(openLogFile(&log_file, &argv[1]));
 
-    struct TreeElem_t root = {50, NULL, NULL};
+    struct TreeElem_t root = {};
 
-    struct TreeElem_t second = {70, NULL, NULL};
-    struct TreeElem_t third = {60, NULL, NULL};
+    CHECK_ERROR(treeCtor(log_file, &root));
 
-    struct TreeElem_t first = {20, NULL, NULL};
-    struct TreeElem_t fourth = {40, NULL, NULL};
-    struct TreeElem_t fifth = {30, NULL, NULL};
-    struct TreeElem_t sixth = {10, NULL, NULL};
+    CHECK_ERROR(treeRun(log_file, &root, &root));
+    CHECK_ERROR(treeRun(log_file, &root, &root));
+    CHECK_ERROR(treeRun(log_file, &root, &root));
+    CHECK_ERROR(treeRun(log_file, &root, &root));
+    CHECK_ERROR(treeRun(log_file, &root, &root));
+    CHECK_ERROR(treeRun(log_file, &root, &root));
 
-    root.left = &first;
-    root.right = &second;
-
-    second.left = &third;
-
-    first.left = &sixth;
-    first.right = &fifth;
-
-    fifth.right = &fourth;
-
-    CHECK_ERROR(addElement(log_file, &root, 25));
-
-    CHECK_ERROR(treeDump(log_file, &root));
+    CHECK_ERROR(treeDtor(log_file, &root));
 
     printf("DONE\n");
 

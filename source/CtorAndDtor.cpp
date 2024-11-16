@@ -11,10 +11,10 @@ ErrorNumbers treeCtor(FILE* log_file, TreeElem_t* root)
     ErrorNumbers check_error = _NO_ERROR;
 
     const char* ROOT_ANSWER = "It is unknown what";
-    root->data = (char*) calloc(32, sizeof(char)); // TODO: Переделать
+    root->data = (char*) calloc(_DATA_SIZE_, sizeof(char));
     CHECK_NULL_ADDR_ERROR(root->data, _CALLOC_ERROR);
 
-    strncpy(root->data, ROOT_ANSWER, 32); // &
+    strncpy(root->data, ROOT_ANSWER, _DATA_SIZE_);
 
     root->left = NULL;
     root->right = NULL;

@@ -24,4 +24,7 @@ enum ErrorNumbers{
 #define CHECK_NULL_ADDR_ERROR(variable, ERROR_NUMBER) if(variable == NULL) \
                                                           {return ERROR_NUMBER;}
 
+const int _DATA_SIZE_ = 32;
+#define _DATA_SIZE "31"
+
 #endif // AKINATOR_H

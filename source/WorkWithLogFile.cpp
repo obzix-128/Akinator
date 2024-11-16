@@ -2,15 +2,13 @@
 #include "../include/ErrorHandler.h"
 
 
-ErrorNumbers openLogFile(FILE** log_file, const char** log_file_name)
+ErrorNumbers openFile(FILE** file, const char** file_name)
 {
-    CHECK_NULL_ADDR_ERROR(log_file, _NULL_ADDRESS_ERROR);
-    CHECK_NULL_ADDR_ERROR(log_file_name, _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(file, _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(file_name, _NULL_ADDRESS_ERROR);
 
-    *log_file = fopen(*log_file_name, "w");
-    CHECK_NULL_ADDR_ERROR(*log_file, _OPEN_ERROR);
-
-    fprintf(*log_file, "<pre>\n");
+    *file = fopen(*file_name, "w");
+    CHECK_NULL_ADDR_ERROR(*file, _OPEN_ERROR);
 
     return _NO_ERROR;
 }
@@ -29,33 +27,9 @@ ErrorNumbers treeDump(FILE* log_file, TreeElem_t* root, const char* func_name,
     fprintf(log_file, "root->data = %s? [%p]\n", root->data, &root->data);
     fprintf(log_file, "root->left = [%p]\n", root->left);
     fprintf(log_file, "root->right = [%p]\n", root->right);
-
-    CHECK_ERROR(treePrint(log_file, root));
     fprintf(log_file, "\n");
+
     CHECK_ERROR(buildGraf(log_file, root, new_node));
-
-    return check_error;
-}
-
-ErrorNumbers treePrint(FILE* log_file, TreeElem_t* node)
-{
-    CHECK_NULL_ADDR_ERROR(log_file, _NULL_ADDRESS_ERROR);
-    CHECK_NULL_ADDR_ERROR(node, _NULL_ADDRESS_ERROR);
-
-    ErrorNumbers check_error = _NO_ERROR;
-
-    fprintf(log_file, "(");
-    if(node->left != 0)
-    {
-        CHECK_ERROR(treePrint(log_file, node->left));
-    }
-    fprintf(log_file, "%s", node->data);
-    if(node->right != 0)
-    {
-        CHECK_ERROR(treePrint(log_file, node->right));
-    }
-
-    fprintf(log_file, ")");
 
     return check_error;
 }

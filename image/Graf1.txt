@@ -2,10 +2,10 @@ digraph
 {
 rankdir = TB;
 {
-_007F4F78[shape = record, style = "filled" fillcolor = "#b0ffb0", label = " { data = Poko | { left = NULL | right = NULL }} "]
-_007F4F90[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = It is unknown what | { left = NULL | right = NULL }} "]
-_0064FEE8[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = He has a guitar? | { <_l_007F4F78> left = 007F4F78 | <_r_007F4F90> right = 007F4F90 }} "]
-_0064FEE8:<_l_007F4F78>->_007F4F78[label = "Yes"]
-_0064FEE8:<_r_007F4F90>->_007F4F90[label = "No"]
+_00BA4F88[shape = record, style = "filled" fillcolor = "#b0ffb0", label = " { data = Poko | { left = NULL | right = NULL }} "]
+_00BA4FA0[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = It is unknown what | { left = NULL | right = NULL }} "]
+_0064FEE8[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = He has a guitar? | { <_l_00BA4F88> left = 00BA4F88 | <_r_00BA4FA0> right = 00BA4FA0 }} "]
+_0064FEE8:<_l_00BA4F88>->_00BA4F88[label = "Yes"]
+_0064FEE8:<_r_00BA4FA0>->_00BA4FA0[label = "No"]
 }
 }

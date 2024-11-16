@@ -1,0 +1,10 @@
+{"He has a guitar"
+yes:{"Poko"}
+no: {"He is very big"
+    yes:{"Ha has a gun"
+        yes:{"Bull"}
+        no: {"El Primo"}
+        }
+    no: {"It is unknown what"}
+    }
+}

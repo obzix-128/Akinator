@@ -2,12 +2,13 @@
 #include "../include/ErrorHandler.h"
 
 
-ErrorNumbers openFile(FILE** file, const char** file_name)
+ErrorNumbers openFile(FILE** file, const char* file_name, const char* opening_mode)
 {
     CHECK_NULL_ADDR_ERROR(file, _NULL_ADDRESS_ERROR);
     CHECK_NULL_ADDR_ERROR(file_name, _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(opening_mode, _NULL_ADDRESS_ERROR);
 
-    *file = fopen(*file_name, "w");
+    *file = fopen(file_name, opening_mode);
     CHECK_NULL_ADDR_ERROR(*file, _OPEN_ERROR);
 
     return _NO_ERROR;
@@ -18,6 +19,7 @@ ErrorNumbers treeDump(FILE* log_file, TreeElem_t* root, const char* func_name,
 {
     CHECK_NULL_ADDR_ERROR(log_file, _NULL_ADDRESS_ERROR);
     CHECK_NULL_ADDR_ERROR(root, _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(func_name, _NULL_ADDRESS_ERROR);
 
     ErrorNumbers check_error;
 
@@ -49,8 +51,8 @@ ErrorNumbers buildGraf(FILE* log_file, TreeElem_t* node, TreeElem_t* new_node)
 
     sprintf(file_name, "image/Graf%d.txt", counter);
 
-    FILE* file_to_write = fopen(file_name, "w");
-    CHECK_NULL_ADDR_ERROR(file_to_write, _NULL_ADDRESS_ERROR);
+    FILE* file_to_write = NULL;
+    CHECK_ERROR(openFile(&file_to_write, file_name, OPEN_FILE_IN_RECORDING_MODE));
 
     fprintf(file_to_write, "digraph\n");
     fprintf(file_to_write, "{\n");
@@ -109,11 +111,11 @@ ErrorNumbers buildAllNodes(TreeElem_t* node, FILE* file_to_write, TreeElem_t* ne
 
     if(node->left != NULL || node->right != NULL)
     {
-        fprintf(file_to_write, "\", label = \" { data = %s? | {", node->data);
+        fprintf(file_to_write, "\", label = \" { address = %p | data = %s? | {", node, node->data);
     }
     else
     {
-        fprintf(file_to_write, "\", label = \" { data = %s | {", node->data);
+        fprintf(file_to_write, "\", label = \" { address = %p | data = %s | {", node, node->data);
     }
 
     if(node->left != NULL)

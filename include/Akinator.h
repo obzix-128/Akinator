@@ -18,7 +18,9 @@ enum ErrorNumbers{
     _NULL_ADDRESS_ERROR           = 2,
     _CALLOC_ERROR                 = 3,
     _NUMBER_OF_ARG_ERROR          = 4,
-    _UNIDENTIFINED_RESPONSE_ERROR = 5
+    _UNIDENTIFINED_RESPONSE_ERROR = 5,
+    _INVALID_ADDRESS_ERROR        = 6,
+    _CHECK_FOUND_ERROR            = 7
 };
 
 #define CHECK_NULL_ADDR_ERROR(variable, ERROR_NUMBER) if(variable == NULL) \

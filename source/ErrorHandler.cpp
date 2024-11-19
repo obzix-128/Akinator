@@ -37,6 +37,16 @@ ErrorNumbers errorHandler(ErrorNumbers error, const char* func_name)
             fprintf(stderr, "ERROR: The entered response was not recognized\n");
             break;
         }
+        case _INVALID_ADDRESS_ERROR:
+        {
+            fprintf(stderr, "ERROR: The address per node has an impossible value\n");
+            break;
+        }
+        case _CHECK_FOUND_ERROR:
+        {
+            fprintf(stderr, "ERROR: An error was found during the check\n");
+            break;
+        }
         default:
         {
             fprintf(stderr, "Unknown error\n");

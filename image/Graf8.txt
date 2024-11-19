@@ -2,22 +2,22 @@ digraph
 {
 rankdir = TB;
 {
-_00820CD0[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = 15 | { left = NULL | right = NULL }} "]
-_00820D48[shape = record, style = "filled" fillcolor = "#b0ffb0", label = " { data = 34 | { left = NULL | right = NULL }} "]
-_00820D18[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = 47 | { left = NULL | right = NULL }} "]
-_00820D00[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = 34 | { <_l_00820D48> left = 00820D48 | <_r_00820D18> right = 00820D18 }} "]
-_00820D00:<_l_00820D48>->_00820D48
-_00820D00:<_r_00820D18>->_00820D18
-_00820CA0[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = 25 | { <_l_00820CD0> left = 00820CD0 | <_r_00820D00> right = 00820D00 }} "]
-_00820CA0:<_l_00820CD0>->_00820CD0
-_00820CA0:<_r_00820D00>->_00820D00
-_00820D30[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = 64 | { left = NULL | right = NULL }} "]
-_00820CE8[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = 97 | { left = NULL | right = NULL }} "]
-_00820CB8[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = 75 | { <_l_00820D30> left = 00820D30 | <_r_00820CE8> right = 00820CE8 }} "]
-_00820CB8:<_l_00820D30>->_00820D30
-_00820CB8:<_r_00820CE8>->_00820CE8
-_0064FEE8[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = 50 | { <_l_00820CA0> left = 00820CA0 | <_r_00820CB8> right = 00820CB8 }} "]
-_0064FEE8:<_l_00820CA0>->_00820CA0
-_0064FEE8:<_r_00820CB8>->_00820CB8
+_00C14F88[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = Poko | { left = NULL | right = NULL }} "]
+_00C10D00[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = Spraut | { left = NULL | right = NULL }} "]
+_00C10E20[shape = record, style = "filled" fillcolor = "#b0ffb0", label = " { data = Bull | { left = NULL | right = NULL }} "]
+_00C10E38[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = El Primo | { left = NULL | right = NULL }} "]
+_00C10D90[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = He has a gun? | { <_l_00C10E20> left = 00C10E20 | <_r_00C10E38> right = 00C10E38 }} "]
+_00C10D90:<_l_00C10E20>->_00C10E20[label = "Yes"]
+_00C10D90:<_r_00C10E38>->_00C10E38[label = "No"]
+_00C10DA8[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = It is unknown what | { left = NULL | right = NULL }} "]
+_00C10D18[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = He is very big? | { <_l_00C10D90> left = 00C10D90 | <_r_00C10DA8> right = 00C10DA8 }} "]
+_00C10D18:<_l_00C10D90>->_00C10D90[label = "Yes"]
+_00C10D18:<_r_00C10DA8>->_00C10DA8[label = "No"]
+_00C14FA0[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = He is a plant? | { <_l_00C10D00> left = 00C10D00 | <_r_00C10D18> right = 00C10D18 }} "]
+_00C14FA0:<_l_00C10D00>->_00C10D00[label = "Yes"]
+_00C14FA0:<_r_00C10D18>->_00C10D18[label = "No"]
+_0064FEE8[shape = record, style = "filled" fillcolor = "#bbffff", label = " { data = He has a guitar? | { <_l_00C14F88> left = 00C14F88 | <_r_00C14FA0> right = 00C14FA0 }} "]
+_0064FEE8:<_l_00C14F88>->_00C14F88[label = "Yes"]
+_0064FEE8:<_r_00C14FA0>->_00C14FA0[label = "No"]
 }
 }

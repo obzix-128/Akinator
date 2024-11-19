@@ -1,10 +1,19 @@
 {"He has a guitar"
 yes:{"Poko"}
 no: {"He is very big"
-    yes:{"Ha has a gun"
+    yes:{"He has a gun"
         yes:{"Bull"}
-        no: {"El Primo"}
+        no: {"She is a woman"
+            yes:{"Roza"}
+            no: {"El Primo"}
+            }
         }
-    no: {"It is unknown what"}
+    no: {"He is a plant"
+        yes:{"He is a mushroom"
+            yes:{"Kordelius"}
+            no: {"Spraut"}
+            }
+        no: {"It is unknown what"}
+        }
     }
 }

@@ -16,8 +16,8 @@ ErrorNumbers treeCtor(FILE* log_file, TreeElem_t* root)
 
     strncpy(root->data, ROOT_ANSWER, _DATA_SIZE_);
 
-    root->left = NULL;
-    root->right = NULL;
+    root->left   = NULL;
+    root->right  = NULL;
 
     CHECK_ERROR(treeDump(log_file, root, __PRETTY_FUNCTION__, root));
 
@@ -41,9 +41,9 @@ ErrorNumbers treeDtor(FILE* log_file, TreeElem_t* node)
     }
 
     free(node->data);
-    node->data = NULL;
-    node->left = NULL;
-    node->right = NULL;
+    node->data   = NULL;
+    node->left   = NULL;
+    node->right  = NULL;
     free(node);
 
     return check_error;

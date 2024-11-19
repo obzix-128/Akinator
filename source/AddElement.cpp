@@ -1,4 +1,3 @@
-#include "../include/Akinator.h"
 #include "../include/ErrorHandler.h"
 #include "../include/AddElement.h"
 #include "../include/WorkWithLogFile.h"
@@ -8,6 +7,7 @@ ErrorNumbers treeAddElement(FILE* log_file, TreeElem_t* node, TreeElem_t* root)
 {
     CHECK_NULL_ADDR_ERROR(log_file, _NULL_ADDRESS_ERROR);
     CHECK_NULL_ADDR_ERROR(node, _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(root, _NULL_ADDRESS_ERROR);
 
     ErrorNumbers check_error = _NO_ERROR;
 

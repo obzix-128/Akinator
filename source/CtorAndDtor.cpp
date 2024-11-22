@@ -6,7 +6,7 @@
 ErrorNumbers treeCtor(FILE* log_file, TreeElem_t* root)
 {
     CHECK_NULL_ADDR_ERROR(log_file, _NULL_ADDRESS_ERROR);
-    CHECK_NULL_ADDR_ERROR(root, _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(root,     _NULL_ADDRESS_ERROR);
 
     ErrorNumbers check_error = _NO_ERROR;
 
@@ -27,7 +27,7 @@ ErrorNumbers treeCtor(FILE* log_file, TreeElem_t* root)
 ErrorNumbers treeDtor(FILE* log_file, TreeElem_t* node)
 {
     CHECK_NULL_ADDR_ERROR(log_file, _NULL_ADDRESS_ERROR);
-    CHECK_NULL_ADDR_ERROR(node, _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(node,     _NULL_ADDRESS_ERROR);
 
     ErrorNumbers check_error = _NO_ERROR;
 
@@ -41,9 +41,9 @@ ErrorNumbers treeDtor(FILE* log_file, TreeElem_t* node)
     }
 
     free(node->data);
-    node->data   = NULL;
-    node->left   = NULL;
-    node->right  = NULL;
+    node->data  = NULL;
+    node->left  = NULL;
+    node->right = NULL;
     free(node);
 
     return check_error;

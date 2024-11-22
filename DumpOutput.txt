@@ -1,0 +1,24 @@
+my_stack address[0064FE80]
+my_stack->dataaddress = [00C204B0]
+my_stack->size     address = [0064FE84], size     value = <   4>
+my_stack->capacity address = [0064FE88], capacity value = <  16>
+
+Stack Contents:
+{
+size = (    ), element value = <6618856>, element address = [00C204B0]
+size = (   1), element value = <12734408>, element address = [00C204B4]
+size = (   2), element value = <12717624>, element address = [00C204B8]
+size = (   3), element value = <12718008>, element address = [00C204BC]
+size = (   4), element value = <875836468>, element address = [00C204C0]
+size = (   5), element value = <875836468>, element address = [00C204C4]
+size = (   6), element value = <875836468>, element address = [00C204C8]
+size = (   7), element value = <875836468>, element address = [00C204CC]
+size = (   8), element value = <875836468>, element address = [00C204D0]
+size = (   9), element value = <875836468>, element address = [00C204D4]
+size = (  10), element value = <875836468>, element address = [00C204D8]
+size = (  11), element value = <875836468>, element address = [00C204DC]
+size = (  12), element value = <875836468>, element address = [00C204E0]
+size = (  13), element value = <875836468>, element address = [00C204E4]
+size = (  14), element value = <875836468>, element address = [00C204E8]
+size = (  15), element value = <875836468>, element address = [00C204EC]
+}

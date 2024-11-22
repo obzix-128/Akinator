@@ -7,9 +7,9 @@
 
 ErrorNumbers playAkinator(FILE* log_file, const char* database_file_name, TreeElem_t* root)
 {
-    CHECK_NULL_ADDR_ERROR(log_file, _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(log_file,           _NULL_ADDRESS_ERROR);
     CHECK_NULL_ADDR_ERROR(database_file_name, _NULL_ADDRESS_ERROR);
-    CHECK_NULL_ADDR_ERROR(root, _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(root,               _NULL_ADDRESS_ERROR);
 
     ErrorNumbers check_error = _NO_ERROR;
 
@@ -24,40 +24,15 @@ ErrorNumbers playAkinator(FILE* log_file, const char* database_file_name, TreeEl
     fclose(database_file);
     CHECK_ERROR(treeDump(log_file, root, __PRETTY_FUNCTION__, NULL));
 
-    fprintf(stdout, "If you want me to guess something, enter \"play\",\n" // TODO: new func
-                    "if you want me to define a thing, enter \"definition\",\n"
-                    "if you want me to compare two things, enter \"comparison\".\n");
+    CHECK_ERROR(selectMode(answer));
 
-    #define _ANSWER_SIZE "31"
-    scanf("%" _ANSWER_SIZE "s", answer);
-
-    if(strcmp(answer, "play") == 0) // TODO: define?
+    if(strcmp(answer, "play") == 0) // TODO? define
     {
-        CHECK_ERROR(treeRun(log_file, root, root, answer));
-
-        CHECK_ERROR(openFile(&database_file, database_file_name, OPEN_FILE_IN_RECORDING_MODE));
-        CHECK_ERROR(treeWrite(database_file, root));
-
-        fclose(database_file);
+        CHECK_ERROR(playMode(log_file, database_file_name, root, answer));
     }
-    else if(strcmp(answer, "definition") == 0) // TODO: new func
+    else if(strcmp(answer, "definition") == 0)
     {
-        fprintf(stdout, "Enter a word and I'll define it.\n");
-        scanf("%" _ANSWER_SIZE "s", answer);
-
-        struct StackInfo stack_with_path = {};
-
-        CHECK_ERROR(StackCtor(&stack_with_path));
-
-        bool check_the_availability_in_the_database = false;
-        CHECK_ERROR(giveDefinition(root, &answer, &check_the_availability_in_the_database,
-                                   &stack_with_path));
-
-        CHECK_ERROR(StackDtor(&stack_with_path));
-        if(check_the_availability_in_the_database == false)
-        {
-            fprintf(stdout, "There is no such word in the database.\n");
-        }
+        CHECK_ERROR(definitionMode(root, answer));
     }
     else if(strcmp(answer, "comparison") == 0)
     {
@@ -66,68 +41,141 @@ ErrorNumbers playAkinator(FILE* log_file, const char* database_file_name, TreeEl
 
     CHECK_ERROR(playItAgain(log_file, database_file_name, root, answer));
 
-    #undef _ANSWER_SIZE
     free(answer);
 
     return check_error;
 }
 
-ErrorNumbers giveDefinition(TreeElem_t* node, char** answer,
-                            bool* check_the_availability_in_the_database, StackInfo* stack_with_path)
+ErrorNumbers definitionMode(TreeElem_t* root, char* answer)
 {
-    CHECK_NULL_ADDR_ERROR(node, _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(root,   _NULL_ADDRESS_ERROR);
     CHECK_NULL_ADDR_ERROR(answer, _NULL_ADDRESS_ERROR);
-    CHECK_NULL_ADDR_ERROR(*answer, _NULL_ADDRESS_ERROR);
-    CHECK_NULL_ADDR_ERROR(check_the_availability_in_the_database, _NULL_ADDRESS_ERROR);
+
+    ErrorNumbers check_error = _NO_ERROR;
+
+    fprintf(stdout, "Enter a word and I'll define it.\n");
+    scanf("%" _ANSWER_SIZE "s", answer);
+
+    struct StackInfo stack_with_path = {};
+
+    CHECK_ERROR(StackCtor(&stack_with_path));
+
+    bool check_the_availability_in_the_database = false;
+    CHECK_ERROR(findWordInTree(root, &answer, &check_the_availability_in_the_database,
+                                &stack_with_path));
+
+    CHECK_ERROR(giveDefinition(&stack_with_path));
+
+    CHECK_ERROR(StackDtor(&stack_with_path));
+    if(check_the_availability_in_the_database == false)
+    {
+        fprintf(stdout, "There is no such word in the database.\n");
+    }
+
+    return check_error;
+}
+
+ErrorNumbers playMode(FILE* log_file, const char* database_file_name, TreeElem_t* root, char* answer)
+{
+    CHECK_NULL_ADDR_ERROR(log_file,           _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(database_file_name, _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(root,               _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(answer,             _NULL_ADDRESS_ERROR);
+
+    ErrorNumbers check_error = _NO_ERROR;
+
+    FILE* database_file = NULL;
+
+    CHECK_ERROR(treeRun(log_file, root, root, answer));
+
+    CHECK_ERROR(openFile(&database_file, database_file_name, OPEN_FILE_IN_RECORDING_MODE));
+    CHECK_ERROR(treeWrite(database_file, root));
+
+    fclose(database_file);
+
+    return check_error;
+}
+
+ErrorNumbers selectMode(char* answer)
+{
+    CHECK_NULL_ADDR_ERROR(answer, _NULL_ADDRESS_ERROR);
+
+    fprintf(stdout, "If you want me to guess something, enter \"play\",\n"
+                    "if you want me to define a thing, enter \"definition\",\n"
+                    "if you want me to compare two things, enter \"comparison\".\n");
+
+    scanf("%" _ANSWER_SIZE "s", answer);
+
+    return _NO_ERROR;
+}
+
+ErrorNumbers giveDefinition(StackInfo* stack_with_path)
+{
     CHECK_NULL_ADDR_ERROR(stack_with_path, _NULL_ADDRESS_ERROR);
 
     ErrorNumbers check_error = _NO_ERROR;
 
-    CHECK_ERROR(StackPush(stack_with_path, node));
+    struct TreeElem_t* previous_node = NULL;
+    CHECK_ERROR(StackPop(stack_with_path, &previous_node));
+    fprintf(stdout, "%s: ", previous_node->data);
+
+    char* node_data_address = previous_node->data;
+
+    do
+    {
+        CHECK_ERROR(StackPop(stack_with_path, &previous_node));
+
+        if(node_data_address == previous_node->left->data)
+        {
+            fprintf(stdout, "%s, ", previous_node->data);
+        }
+        else if(node_data_address == previous_node->right->data)
+        {
+            fprintf(stdout, "not %s, ", previous_node->data);
+        }
+        else
+        {
+            return _INVALID_ADDRESS_ERROR;
+        }
+
+        node_data_address = previous_node->data;
+    }
+    while(stack_with_path->size > 0);
+
+    fprintf(stdout, "\n");
+
+    return check_error;
+}
+
+ErrorNumbers findWordInTree(TreeElem_t* node, char** answer,
+                            bool* check_the_availability_in_the_database, StackInfo* stack_with_path)
+{
+    CHECK_NULL_ADDR_ERROR(node,                                   _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(answer,                                 _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(*answer,                                _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(check_the_availability_in_the_database, _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(stack_with_path,                        _NULL_ADDRESS_ERROR);
+
+    ErrorNumbers check_error = _NO_ERROR;
+
+    if(*check_the_availability_in_the_database == false)
+    {
+        CHECK_ERROR(StackPush(stack_with_path, node));
+    }
 
     if(node->left != 0)
     {
-        CHECK_ERROR(giveDefinition(node->left, answer, check_the_availability_in_the_database,
+        CHECK_ERROR(findWordInTree(node->left, answer, check_the_availability_in_the_database,
                                    stack_with_path));
     }
     if(node->right != 0)
     {
-        CHECK_ERROR(giveDefinition(node->right, answer, check_the_availability_in_the_database,
+        CHECK_ERROR(findWordInTree(node->right, answer, check_the_availability_in_the_database,
                                    stack_with_path));
     }
 
     if(strcmp(*answer, node->data) == 0)
     {
-        fprintf(stdout, "%s: ", node->data);
-
-        struct TreeElem_t* previous_node = NULL;
-        CHECK_ERROR(StackPop(stack_with_path, &previous_node));
-
-        char* node_data_address = node->data;
-
-        do
-        {
-            CHECK_ERROR(StackPop(stack_with_path, &previous_node));
-
-            if(node_data_address == previous_node->left->data)
-            {
-                fprintf(stdout, "%s, ", previous_node->data);
-            }
-            else if(node_data_address == previous_node->right->data)
-            {
-                fprintf(stdout, "not %s, ", previous_node->data);
-            }
-            else
-            {
-                return _INVALID_ADDRESS_ERROR;
-            }
-
-            node_data_address = previous_node->data;
-        }
-        while(stack_with_path->size > 0);
-
-        fprintf(stdout, "\n");
-
         *check_the_availability_in_the_database = true;
     }
     else if(*check_the_availability_in_the_database == false)
@@ -141,15 +189,15 @@ ErrorNumbers giveDefinition(TreeElem_t* node, char** answer,
 ErrorNumbers playItAgain(FILE* log_file, const char* database_file_name, TreeElem_t* root,
                          char* answer)
 {
-    CHECK_NULL_ADDR_ERROR(log_file, _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(log_file,           _NULL_ADDRESS_ERROR);
     CHECK_NULL_ADDR_ERROR(database_file_name, _NULL_ADDRESS_ERROR);
-    CHECK_NULL_ADDR_ERROR(root, _NULL_ADDRESS_ERROR);
-    CHECK_NULL_ADDR_ERROR(answer, _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(root,               _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(answer,             _NULL_ADDRESS_ERROR);
 
     ErrorNumbers check_error = _NO_ERROR;
 
     fprintf(stdout, "Do you want to play more?(yes/no)\n");
-    scanf("%3s", answer); // TODO: define
+    scanf("%" _ANSWER_SIZE "s", answer);
 
     if(strcmp(answer, "yes") == 0)
     {
@@ -170,7 +218,7 @@ ErrorNumbers playItAgain(FILE* log_file, const char* database_file_name, TreeEle
 ErrorNumbers treeRun(FILE* log_file, TreeElem_t* node, TreeElem_t* root, char* answer)
 {
     CHECK_NULL_ADDR_ERROR(log_file, _NULL_ADDRESS_ERROR);
-    CHECK_NULL_ADDR_ERROR(node, _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(node,     _NULL_ADDRESS_ERROR);
 
     ErrorNumbers check_error = _NO_ERROR;
 

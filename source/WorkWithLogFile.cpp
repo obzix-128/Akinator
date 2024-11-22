@@ -4,8 +4,8 @@
 
 ErrorNumbers openFile(FILE** file, const char* file_name, const char* opening_mode)
 {
-    CHECK_NULL_ADDR_ERROR(file, _NULL_ADDRESS_ERROR);
-    CHECK_NULL_ADDR_ERROR(file_name, _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(file,         _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(file_name,    _NULL_ADDRESS_ERROR);
     CHECK_NULL_ADDR_ERROR(opening_mode, _NULL_ADDRESS_ERROR);
 
     *file = fopen(file_name, opening_mode);
@@ -17,8 +17,8 @@ ErrorNumbers openFile(FILE** file, const char* file_name, const char* opening_mo
 ErrorNumbers treeDump(FILE* log_file, TreeElem_t* root, const char* func_name,
                       TreeElem_t* new_node)
 {
-    CHECK_NULL_ADDR_ERROR(log_file, _NULL_ADDRESS_ERROR);
-    CHECK_NULL_ADDR_ERROR(root, _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(log_file,  _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(root,      _NULL_ADDRESS_ERROR);
     CHECK_NULL_ADDR_ERROR(func_name, _NULL_ADDRESS_ERROR);
 
     ErrorNumbers check_error;
@@ -39,7 +39,7 @@ ErrorNumbers treeDump(FILE* log_file, TreeElem_t* root, const char* func_name,
 ErrorNumbers buildGraf(FILE* log_file, TreeElem_t* node, TreeElem_t* new_node)
 {
     CHECK_NULL_ADDR_ERROR(log_file, _NULL_ADDRESS_ERROR);
-    CHECK_NULL_ADDR_ERROR(node, _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(node,     _NULL_ADDRESS_ERROR);
 
     ErrorNumbers check_error = _NO_ERROR;
 
@@ -84,7 +84,7 @@ ErrorNumbers buildGraf(FILE* log_file, TreeElem_t* node, TreeElem_t* new_node)
 
 ErrorNumbers buildAllNodes(TreeElem_t* node, FILE* file_to_write, TreeElem_t* new_node)
 {
-    CHECK_NULL_ADDR_ERROR(node, _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(node,          _NULL_ADDRESS_ERROR);
     CHECK_NULL_ADDR_ERROR(file_to_write, _NULL_ADDRESS_ERROR);
 
     ErrorNumbers check_error = _NO_ERROR;

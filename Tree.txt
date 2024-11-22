@@ -13,7 +13,10 @@ no: {"He is very big"
             yes:{"Kordelius"}
             no: {"Spraut"}
             }
-        no: {"It is unknown what"}
+        no: {"She is an alien"
+            yes:{"Eva"}
+            no: {"It is unknown what"}
+            }
         }
     }
 }

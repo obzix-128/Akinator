@@ -5,6 +5,8 @@
 #include <stdint.h>
 #include <stdio.h>
 
+#include "../../include/Akinator.h"
+
 #ifdef _DEBUG_
 #define _DEBUG_CHICK_CHIRICK
 #define _DEBUG_HASH_DJB

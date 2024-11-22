@@ -5,7 +5,7 @@
 ErrorNumbers treeRead(FILE* database_file, TreeElem_t* node)
 {
     CHECK_NULL_ADDR_ERROR(database_file, _NULL_ADDRESS_ERROR);
-    CHECK_NULL_ADDR_ERROR(node, _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(node,          _NULL_ADDRESS_ERROR);
 
     ErrorNumbers check_error = _NO_ERROR;
 
@@ -25,7 +25,7 @@ ErrorNumbers treeRead(FILE* database_file, TreeElem_t* node)
     return check_error;
 }
 
-ErrorNumbers createNewNode(FILE* database_file, TreeElem_t** old_node_lr) // TODO: left/right - lr
+ErrorNumbers createNewNode(FILE* database_file, TreeElem_t** old_node_lr) // TODO? left/right - lr
 {
     CHECK_NULL_ADDR_ERROR(database_file, _NULL_ADDRESS_ERROR);
 
@@ -65,7 +65,7 @@ ErrorNumbers searchForOpeningCurlyBrace(FILE* database_file)
 ErrorNumbers treeWrite(FILE* database_file, TreeElem_t* node)
 {
     CHECK_NULL_ADDR_ERROR(database_file, _NULL_ADDRESS_ERROR);
-    CHECK_NULL_ADDR_ERROR(node, _NULL_ADDRESS_ERROR);
+    CHECK_NULL_ADDR_ERROR(node,          _NULL_ADDRESS_ERROR);
 
     ErrorNumbers check_error = _NO_ERROR;
 
